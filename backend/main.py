@@ -2,8 +2,20 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List
 from collections import defaultdict, deque
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+# Enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins. Change to specific domains if needed.
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
+
+# hi
 
 @app.get("/")
 def read_root():
